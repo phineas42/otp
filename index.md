@@ -1,3 +1,6 @@
+---
+title: Hello Jekyll
+---
 <!doctype html>
 <html>
   <head>
