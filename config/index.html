@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <title>OTP Configuration</title>
+  <link rel='stylesheet' type='text/css' href='css/slate.min.css'>
+  <script src='js/slate.min.js'></script>
+  <style>
+  .title {
+    padding: 15px 10px;
+    text-transform: uppercase;
+    font-family: 'PT Sans', sans-serif;
+    font-size: 1.2em;
+    font-weight: 500;
+    color: #888888;
+    text-align: center;
+  }
+  </style>
+  </head>
+
+  <body>
+    <h1 class='title'>OTP Configuration</h1>
+
+    <div class='item-container'>
+      <div class='item-container-content'>
+        <div class='item'>
+          Configure your OTP codes.
+        </div>
+      </div>
+    </div>
+    <div class='item-container'>
+      <div class='item-container-header'>OTP Key</div>
+      <div class='item-container-content'>
+        <label class='item'>
+          <div class="item-input-wrapper">
+          Base32-encoded OTP Key
+          <input id="otpkey0_input" type="text" class="item-input" name="otp-0" placeholder="OTP Key"/>
+          </div>
+        </label>
+      </div>
+      <div class='item-container-footer'>
+        This key must be a Base32 key for SHA1 TOTP.
+      </div>
+    </div>
+
+    <div class='item-container'>
+      <div class='button-container'>
+        <input id='submit_button' type='button' class='item-button' value='SUBMIT'>
+      </div>
+    </div>
+  </body>
+  <script>
+  function getConfigData() {
+    var otpkey0_input = document.getElementById('otpkey0_input');
+    var options = {
+      'otpkey0': otpkey0_input.text
+    };
+
+    // Save for next launch
+    localStorage['otpkey0'] = options['otpkey0'];
+
+    console.log('Got options: ' + JSON.stringify(options));
+    return options;
+  }
+
+  function getQueryParam(variable, defaultValue) {
+    var query = location.search.substring(1);
+    var vars = query.split('&');
+    for (var i = 0; i < vars.length; i++) {
+      var pair = vars[i].split('=');
+      if (pair[0] === variable) {
+        return decodeURIComponent(pair[1]);
+      }
+    }
+    return defaultValue || false;
+  }
+ 
+  var submitButton = document.getElementById('submit_button');
+  submitButton.addEventListener('click', function() {
+    console.log('Submit');
+
+    // Set the return URL depending on the runtime environment
+    var return_to = getQueryParam('return_to', 'pebblejs://close#');
+    document.location = return_to + encodeURIComponent(JSON.stringify(getConfigData()));
+  });
+
+  (function() {
+    var otpkey0_input = document.getElementById('otpkey0_input');
+
+    // Load any previously saved configuration, if available
+    if(localStorage['otpkey0_input']) {
+      otpkey0_input.text = localStore['otpkey0_input'];
+    }
+  })();
+  </script>
+</html>
