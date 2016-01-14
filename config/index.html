@@ -32,6 +32,10 @@
       <div class='item-container-content'>
         <label class='item'>
           <div class="item-input-wrapper">
+          Label for OTP key
+          </div>
+          <input id="otplabel0_input" type="text" class="item-input" name="label-0" placeholder="Label"/>
+          <div class="item-input-wrapper">
           Base32-encoded OTP Key
           <input id="otpkey0_input" type="text" class="item-input" name="otp-0" placeholder="OTP Key"/>
           </div>
@@ -52,12 +56,13 @@
   function getConfigData() {
     var otpkey0_input = document.getElementById('otpkey0_input');
     var options = {
-      'otpkey0': otpkey0_input.value
+      'otpkey0': otpkey0_input.value,
+      'otplabel0': otplabel0_input.value
     };
 
     // Save for next launch
     localStorage['otpkey0'] = options['otpkey0'];
-
+    localStorage['otplabel0'] = options['otplabel0'];
     console.log('Got options: ' + JSON.stringify(options));
     return options;
   }
@@ -85,10 +90,14 @@
 
   (function() {
     var otpkey0_input = document.getElementById('otpkey0_input');
+    var otplabel0_input = document.getElementById('otplabel0_input');
 
     // Load any previously saved configuration, if available
     if(localStorage['otpkey0_input']) {
       otpkey0_input.value = localStore['otpkey0_input'];
+    }
+    if(localStorage['otplabel0_input']) {
+      otplabel0_input.value = localStore['otplabel0_input'];
     }
   })();
   </script>
