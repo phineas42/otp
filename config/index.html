@@ -52,7 +52,7 @@
   function getConfigData() {
     var otpkey0_input = document.getElementById('otpkey0_input');
     var options = {
-      'otpkey0': otpkey0_input.text
+      'otpkey0': otpkey0_input.value
     };
 
     // Save for next launch
@@ -88,7 +88,7 @@
 
     // Load any previously saved configuration, if available
     if(localStorage['otpkey0_input']) {
-      otpkey0_input.text = localStore['otpkey0_input'];
+      otpkey0_input.value = localStore['otpkey0_input'];
     }
   })();
   </script>
