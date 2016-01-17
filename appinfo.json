@@ -1,0 +1,36 @@
+{
+    "appKeys": {
+        "MK_OTPKEY0": 0,
+        "MK_OTPLABEL0": 10
+    },
+    "capabilities": [
+        "configurable"
+    ],
+    "companyName": "phineas42@gmail.com",
+    "longName": "OTP",
+    "projectType": "native",
+    "resources": {
+        "media": [
+            {
+                "file": "images/Cles-de-serrure-lock-keys-28px.png",
+                "memoryFormat": "SmallestPalette",
+                "menuIcon": true,
+                "name": "APP_ICON",
+                "spaceOptimization": "storage",
+                "storageFormat": "png",
+                "targetPlatforms": null,
+                "type": "bitmap"
+            }
+        ]
+    },
+    "sdkVersion": "3",
+    "shortName": "OTP",
+    "targetPlatforms": [
+        "basalt"
+    ],
+    "uuid": "43368fc3-714a-47d7-8896-526671c4ebc1",
+    "versionLabel": "1.0",
+    "watchapp": {
+        "watchface": false
+    }
+}
